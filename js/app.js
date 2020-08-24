@@ -1,7 +1,7 @@
 'use strict';
 
 var img = [];
-var count = 0;
+// var count = 0;
 var img1 = document.getElementById('img1');
 var img2 = document.getElementById('img2');
 var img3 = document.getElementById('img3');
@@ -55,11 +55,6 @@ function renderImage() {
     renderImage();
   }
 
-  if (count >= 25) {
-    break;
-  }
-  count++;
-
   img1Reference.viewed ++;
   img2Reference.viewed ++;
   img3Reference.viewed ++;
@@ -73,6 +68,11 @@ function renderImage() {
   img3.alt = img3Reference.alt;
 
 }
+
+// if (count >= 25) {
+//   break;
+// }
+// count++;
 
 function countClicks1() {
   img1Reference.clicked ++;
