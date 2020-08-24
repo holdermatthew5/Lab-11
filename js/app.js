@@ -1,60 +1,97 @@
 'use strict';
 
-var image = [];
+var img = [];
+var count = 0;
+var img1 = document.getElementById('img1');
+var img2 = document.getElementById('img2');
+var img3 = document.getElementById('img3');
+var img1Reference;
+var img2Reference;
+var img3Reference;
 
-var ProductCreation = function(name, src) {
+
+var ProductCreation = function(name, src, alt) {
   this.product = name;
   this.src = src;
+  this.alt = alt;
   this.viewed = 0;
-  this.chosen = 0;
-  image.push(this);
+  this.clicked = 0;
+  img.push(this);
 };
 
-new ProductCreation('bag', './images/bag.jpg');
-new ProductCreation('banana','banana.jpg');
-new ProductCreation('bathroom', 'bathroom.jpg');
-new ProductCreation('boots', 'boots.jpg');
-new ProductCreation('breakfast', 'breakfast.jpg');
-new ProductCreation('bubblegum', 'bubblegum.jpg');
-new ProductCreation('chair', 'chair.jpg');
-new ProductCreation('cthulhu', 'cthulhu.jpg');
-new ProductCreation('dogDuck', 'dog-duck.jpg');
-new ProductCreation('dragon', 'dragon.jpg');
-new ProductCreation('pen', 'pen.jpg');
-new ProductCreation('petSweep', 'pet-sweep.jpg');
-new ProductCreation('scissors', 'scissors.jpg');
-new ProductCreation('shark', 'shark.jpg');
-new ProductCreation('sweep', 'sweep.png');
-new ProductCreation('tauntaun', 'tauntaun.jpg');
-new ProductCreation('unicorn', 'unicorn.jpg');
-new ProductCreation('usb', 'usb.gif');
-new ProductCreation('waterCan', 'water-can.jpg');
-new ProductCreation('wineGlass', 'wine-glass.jpg');
+new ProductCreation('bag', './images/bag.jpg', 'star-wars luggage');
+new ProductCreation('banana','./images/banana.jpg', 'banana slicer');
+new ProductCreation('bathroom', './images/bathroom.jpg', 'tablet/toilet-paper stand');
+new ProductCreation('boots', './images/boots.jpg', 'toeless rainboots');
+new ProductCreation('breakfast', './images/breakfast.jpg', 'all-in-one breakfast machine');
+new ProductCreation('bubblegum', './images/bubblegum.jpg', 'novelty bubblegum');
+new ProductCreation('chair', './images/chair.jpg', 'round-top chair');
+new ProductCreation('cthulhu', './images/cthulhu.jpg', 'cthulhu figurine');
+new ProductCreation('dogDuck', './images/dog-duck.jpg', 'duck-lips for dogs');
+new ProductCreation('dragon', './images/dragon.jpg', 'dragon meat');
+new ProductCreation('pen', './images/pen.jpg', 'pen-cap utensils');
+new ProductCreation('petSweep', './images/pet-sweep.jpg', 'pet-paw broom booties');
+new ProductCreation('scissors', './images/scissors.jpg', 'pizza scissors');
+new ProductCreation('shark', './images/shark.jpg', 'shark sleeping bag');
+new ProductCreation('sweep', './images/sweep.png', 'baby onesie sweeper');
+new ProductCreation('tauntaun', './images/tauntaun.jpg', 'tauntaun sleeping bag');
+new ProductCreation('unicorn', './images/unicorn.jpg', 'unicorn meat');
+new ProductCreation('usb', './images/usb.gif', 'tentacle usb');
+new ProductCreation('waterCan', './images/water-can.jpg', 'watering can mug');
+new ProductCreation('wineGlass', './images/wine-glass.jpg', 'no-spill wineglass');
 
 function randomNumber(max) {
   return Math.floor(Math.random() * max);
 }
 
+
 function renderImage() {
-  countClicks();
-  document.getElementByID('img1').setAttribute('src', image[randomNumber(20)]);
-  document.getElementByID('img2').setAttribute('src', image[randomNumber(20)]);
-  document.getElementByID('img3').setAttribute('src', image[randomNumber(20)]);
+  img1Reference = img[randomNumber(img.length - 1)];
+  img2Reference = img[randomNumber(img.length - 1)];
+  img3Reference = img[randomNumber(img.length - 1)];
+
+  while (img1Reference === img2Reference || img1Reference === img3Reference || img2Reference === img3Reference) {
+    console.log('here');
+    renderImage();
+  }
+
+  if (count >= 25) {
+    break;
+  }
+  count++;
+
+  img1Reference.viewed ++;
+  img2Reference.viewed ++;
+  img3Reference.viewed ++;
+
+  img1.src = img1Reference.src;
+  img2.src = img2Reference.src;
+  img3.src = img3Reference.src;
+
+  img1.alt = img1Reference.alt;
+  img2.alt = img2Reference.alt;
+  img3.alt = img3Reference.alt;
+
 }
 
-// countClicks() {
-//   if (img1 === clicked on) {
-//     img1.chosen ++;
-//   } else if(img2 === clicked on) {
-//     img2.chosen ++;
-//   } else {
-//     img.chosen ++;
-//   }
-// }
+function countClicks1() {
+  img1Reference.clicked ++;
+  renderImage();
+}
 
-var imageOneListener = document.getElementByID('img1');
-imageOneListener.addEventListener('onclick', renderImage);
-var imageTwoListener = document.getElementById('img2');
-imageTwoListener.addEventListener('onclick', renderImage);
-var imageThreeListener = document.getElementByID('img3');
-imageThreeListener.addEventListener('onclick', renderImage);
+function countClicks2() {
+  img2Reference.clicked ++;
+  renderImage();
+}
+
+function countClicks3() {
+  img3Reference.clicked ++;
+  renderImage();
+}
+
+renderImage();
+
+
+img1.addEventListener('click', countClicks1);
+img2.addEventListener('click', countClicks2);
+img3.addEventListener('click', countClicks3);
