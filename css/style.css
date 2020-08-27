@@ -1,3 +1,7 @@
+body {
+  min-width: 990px;
+}
+
 header {
   width: 60%;
   margin: auto;
@@ -38,18 +42,10 @@ div {
 }
 
 p {
-  padding-left: 15px;
-  line-height: 20px;
-}
-
-p:first-of-type {
-  padding: 15px;
-  text-align: center;
+  font-size: 25px;
   font-weight: bold;
-}
-
-p:last-of-type {
-  padding-bottom: 10px;
+  text-align: center;
+  padding: 10px;
 }
 
 img {
