@@ -1,5 +1,4 @@
 header {
-  height: 100px;
   width: 60%;
   margin: auto;
   background-color: rgb(42, 42, 255);
@@ -17,10 +16,10 @@ h1 {
 
 header p {
   font-size: 20px;
-  margin-top:10px;
+  margin: 10px 0px 10px 0px;
 }
 
-main {
+section {
   text-align: center;
   width: 50%;
   margin: auto;
@@ -28,6 +27,29 @@ main {
   height: 140px;
   border-radius: 20px;
   border: solid black 3px;
+}
+
+div {
+  width: 50%;
+  margin: auto;
+  background-color: rgb(41, 169, 212);
+  border-radius: 15px;
+  border: solid black 3px;
+}
+
+p {
+  padding-left: 15px;
+  line-height: 20px;
+}
+
+p:first-of-type {
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+
+p:last-of-type {
+  padding-bottom: 10px;
 }
 
 img {
