@@ -72,9 +72,11 @@ function countRender() {
   if (count < 25) {
     count++;
     renderImage();
-  } // else {
-  // load the graph
-  // }
+  } else {
+    img1.removeEventListener('click', countClicks1);
+    img2.removeEventListener('click', countClicks2);
+    img3.removeEventListener('click', countClicks3);
+  }
 }
 
 function countClicks1() {
