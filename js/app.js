@@ -1,7 +1,7 @@
 'use strict';
 
 var img = [];
-// var count = 0;
+var count = 0;
 var img1 = document.getElementById('img1');
 var img2 = document.getElementById('img2');
 var img3 = document.getElementById('img3');
@@ -10,7 +10,7 @@ var img2Reference;
 var img3Reference;
 
 
-var ProductCreation = function(name, src, alt) {
+var ProductCreation = function (name, src, alt) {
   this.product = name;
   this.src = src;
   this.alt = alt;
@@ -20,7 +20,7 @@ var ProductCreation = function(name, src, alt) {
 };
 
 new ProductCreation('bag', './images/bag.jpg', 'star-wars luggage');
-new ProductCreation('banana','./images/banana.jpg', 'banana slicer');
+new ProductCreation('banana', './images/banana.jpg', 'banana slicer');
 new ProductCreation('bathroom', './images/bathroom.jpg', 'tablet/toilet-paper stand');
 new ProductCreation('boots', './images/boots.jpg', 'toeless rainboots');
 new ProductCreation('breakfast', './images/breakfast.jpg', 'all-in-one breakfast machine');
@@ -50,14 +50,13 @@ function renderImage() {
   img2Reference = img[randomNumber(img.length - 1)];
   img3Reference = img[randomNumber(img.length - 1)];
 
-  while (img1Reference === img2Reference || img1Reference === img3Reference || img2Reference === img3Reference) {
-    console.log('here');
+  if (img1Reference === img2Reference || img1Reference === img3Reference || img2Reference === img3Reference) {
     renderImage();
   }
 
-  img1Reference.viewed ++;
-  img2Reference.viewed ++;
-  img3Reference.viewed ++;
+  img1Reference.viewed++;
+  img2Reference.viewed++;
+  img3Reference.viewed++;
 
   img1.src = img1Reference.src;
   img2.src = img2Reference.src;
@@ -69,28 +68,33 @@ function renderImage() {
 
 }
 
-// if (count >= 25) {
-//   break;
-// }
-// count++;
+function countRender() {
+  if (count < 25) {
+    count++;
+    renderImage();
+  } // else {
+  // load the graph
+  // }
+}
 
 function countClicks1() {
-  img1Reference.clicked ++;
-  renderImage();
+  img1Reference.clicked++;
+  countRender();
 }
 
 function countClicks2() {
-  img2Reference.clicked ++;
-  renderImage();
+  img2Reference.clicked++;
+  countRender();
 }
 
 function countClicks3() {
-  img3Reference.clicked ++;
-  renderImage();
+  img3Reference.clicked++;
+  countRender();
 }
 
-renderImage();
+countRender();
 
+// renderImage();
 
 img1.addEventListener('click', countClicks1);
 img2.addEventListener('click', countClicks2);
