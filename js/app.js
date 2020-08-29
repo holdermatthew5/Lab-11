@@ -14,6 +14,8 @@ var img3RefX;
 var viewed = [];
 var clicked = [];
 var product = [];
+var strImg;
+var getStrImg = localStorage.getItem('strImg');
 
 var ProductCreation = function (name, src, alt) {
   this.product = name;
@@ -24,26 +26,30 @@ var ProductCreation = function (name, src, alt) {
   img.push(this);
 };
 
-new ProductCreation('bag', './images/bag.jpg', 'Star-wars luggage');
-new ProductCreation('banana', './images/banana.jpg', 'Banana slicer');
-new ProductCreation('bathroom', './images/bathroom.jpg', 'Tablet/toilet-paper stand');
-new ProductCreation('boots', './images/boots.jpg', 'Toeless rainboots');
-new ProductCreation('breakfast', './images/breakfast.jpg', 'All-in-one breakfast machine');
-new ProductCreation('bubblegum', './images/bubblegum.jpg', 'Novelty bubblegum');
-new ProductCreation('chair', './images/chair.jpg', 'Round-top chair');
-new ProductCreation('cthulhu', './images/cthulhu.jpg', 'Cthulhu figurine');
-new ProductCreation('dogDuck', './images/dog-duck.jpg', 'Duck-lips for dogs');
-new ProductCreation('dragon', './images/dragon.jpg', 'Dragon meat');
-new ProductCreation('pen', './images/pen.jpg', 'Pen-cap utensils');
-new ProductCreation('petSweep', './images/pet-sweep.jpg', 'Pet-paw broom booties');
-new ProductCreation('scissors', './images/scissors.jpg', 'Pizza scissors');
-new ProductCreation('shark', './images/shark.jpg', 'Shark sleeping bag');
-new ProductCreation('sweep', './images/sweep.png', 'Baby onesie sweeper');
-new ProductCreation('tauntaun', './images/tauntaun.jpg', 'Tauntaun sleeping bag');
-new ProductCreation('unicorn', './images/unicorn.jpg', 'Unicorn meat');
-new ProductCreation('usb', './images/usb.gif', 'Tentacle usb');
-new ProductCreation('waterCan', './images/water-can.jpg', 'Watering can mug');
-new ProductCreation('wineGlass', './images/wine-glass.jpg', 'No-spill wineglass');
+if (getStrImg) {
+  img = JSON.parse(getStrImg);
+} else {
+  new ProductCreation('bag', './images/bag.jpg', 'Star-wars luggage');
+  new ProductCreation('banana', './images/banana.jpg', 'Banana slicer');
+  new ProductCreation('bathroom', './images/bathroom.jpg', 'Tablet/toilet-paper stand');
+  new ProductCreation('boots', './images/boots.jpg', 'Toeless rainboots');
+  new ProductCreation('breakfast', './images/breakfast.jpg', 'All-in-one breakfast machine');
+  new ProductCreation('bubblegum', './images/bubblegum.jpg', 'Novelty bubblegum');
+  new ProductCreation('chair', './images/chair.jpg', 'Round-top chair');
+  new ProductCreation('cthulhu', './images/cthulhu.jpg', 'Cthulhu figurine');
+  new ProductCreation('dogDuck', './images/dog-duck.jpg', 'Duck-lips for dogs');
+  new ProductCreation('dragon', './images/dragon.jpg', 'Dragon meat');
+  new ProductCreation('pen', './images/pen.jpg', 'Pen-cap utensils');
+  new ProductCreation('petSweep', './images/pet-sweep.jpg', 'Pet-paw broom booties');
+  new ProductCreation('scissors', './images/scissors.jpg', 'Pizza scissors');
+  new ProductCreation('shark', './images/shark.jpg', 'Shark sleeping bag');
+  new ProductCreation('sweep', './images/sweep.png', 'Baby onesie sweeper');
+  new ProductCreation('tauntaun', './images/tauntaun.jpg', 'Tauntaun sleeping bag');
+  new ProductCreation('unicorn', './images/unicorn.jpg', 'Unicorn meat');
+  new ProductCreation('usb', './images/usb.gif', 'Tentacle usb');
+  new ProductCreation('waterCan', './images/water-can.jpg', 'Watering can mug');
+  new ProductCreation('wineGlass', './images/wine-glass.jpg', 'No-spill wineglass');
+}
 
 function randomNumber(max) {
   return Math.floor(Math.random() * max);
@@ -85,6 +91,8 @@ function countRender() {
     count++;
     renderImage();
   } else {
+    strImg = JSON.stringify(img);
+    localStorage.setItem('strImg', strImg);
     img1.removeEventListener('click', countClicks1);
     img2.removeEventListener('click', countClicks2);
     img3.removeEventListener('click', countClicks3);
@@ -110,45 +118,45 @@ function postResults() {
         label: '# of Votes',
         data: clicked,
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)'
+          'rgba(255, 99, 132, 0.7)',
+          'rgba(0, 81, 255, 0.7)',
+          'rgba(255, 206, 86, 0.7)',
+          'rgba(75, 192, 192, 0.7)',
+          'rgba(153, 102, 255, 0.7)',
+          'rgba(255, 99, 132, 0.7)',
+          'rgba(0, 81, 255, 0.7)',
+          'rgba(255, 206, 86, 0.7)',
+          'rgba(75, 192, 192, 0.7)',
+          'rgba(153, 102, 255, 0.7)',
+          'rgba(255, 99, 132, 0.7)',
+          'rgba(0, 81, 255, 0.7)',
+          'rgba(255, 206, 86, 0.7)',
+          'rgba(75, 192, 192, 0.7)',
+          'rgba(153, 102, 255, 0.7)',
+          'rgba(255, 99, 132, 0.7)',
+          'rgba(0, 81, 255, 0.7)',
+          'rgba(255, 206, 86, 0.7)',
+          'rgba(75, 192, 192, 0.7)',
+          'rgba(153, 102, 255, 0.7)'
         ],
         borderColor: [
           'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
+          'rgba(0, 81, 255, 1)',
           'rgba(255, 206, 86, 1)',
           'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)',
           'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
+          'rgba(0, 81, 255, 1)',
           'rgba(255, 206, 86, 1)',
           'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)',
           'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
+          'rgba(0, 81, 255, 1)',
           'rgba(255, 206, 86, 1)',
           'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)',
           'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
+          'rgba(0, 81, 255, 1)',
           'rgba(255, 206, 86, 1)',
           'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)'
@@ -159,45 +167,45 @@ function postResults() {
         label: '# of views',
         data: viewed,
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)'
+          'rgba(255, 99, 132, 0.7)',
+          'rgba(0, 81, 255, 0.7)',
+          'rgba(255, 206, 86, 0.7)',
+          'rgba(75, 192, 192, 0.7)',
+          'rgba(153, 102, 255, 0.7)',
+          'rgba(255, 99, 132, 0.7)',
+          'rgba(0, 81, 255, 0.7)',
+          'rgba(255, 206, 86, 0.7)',
+          'rgba(75, 192, 192, 0.7)',
+          'rgba(153, 102, 255, 0.7)',
+          'rgba(255, 99, 132, 0.7)',
+          'rgba(0, 81, 255, 0.7)',
+          'rgba(255, 206, 86, 0.7)',
+          'rgba(75, 192, 192, 0.7)',
+          'rgba(153, 102, 255, 0.7)',
+          'rgba(255, 99, 132, 0.7)',
+          'rgba(0, 81, 255, 0.7)',
+          'rgba(255, 206, 86, 0.7)',
+          'rgba(75, 192, 192, 0.7)',
+          'rgba(153, 102, 255, 0.7)'
         ],
         borderColor: [
           'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
+          'rgba(0, 81, 255, 1)',
           'rgba(255, 206, 86, 1)',
           'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)',
           'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
+          'rgba(0, 81, 255, 1)',
           'rgba(255, 206, 86, 1)',
           'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)',
           'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
+          'rgba(0, 81, 255, 1)',
           'rgba(255, 206, 86, 1)',
           'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)',
           'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
+          'rgba(0, 81, 255, 1)',
           'rgba(255, 206, 86, 1)',
           'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)'
