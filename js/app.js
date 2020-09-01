@@ -57,9 +57,9 @@ function randomNumber(max) {
 
 
 function renderImage() {
-  img1Reference = img[randomNumber(img.length - 1)];
-  img2Reference = img[randomNumber(img.length - 1)];
-  img3Reference = img[randomNumber(img.length - 1)];
+  img1Reference = img[randomNumber(img.length)];
+  img2Reference = img[randomNumber(img.length)];
+  img3Reference = img[randomNumber(img.length)];
 
   if (img1Reference === img2Reference || img1Reference === img3Reference || img2Reference === img3Reference) {
     renderImage();
