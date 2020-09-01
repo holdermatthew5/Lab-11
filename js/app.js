@@ -1,5 +1,6 @@
 'use strict';
 
+// Global variables
 var img = [];
 var count = 0;
 var img1 = document.getElementById('img1');
@@ -17,6 +18,7 @@ var product = [];
 var strImg;
 var getStrImg = localStorage.getItem('strImg');
 
+// Product obect constructor function
 var ProductCreation = function (name, src, alt) {
   this.product = name;
   this.src = src;
@@ -26,6 +28,8 @@ var ProductCreation = function (name, src, alt) {
   img.push(this);
 };
 
+// Use Local Storage (saved data)
+// or constructor function (new data)
 if (getStrImg) {
   img = JSON.parse(getStrImg);
 } else {
@@ -51,11 +55,14 @@ if (getStrImg) {
   new ProductCreation('wineGlass', './images/wine-glass.jpg', 'No-spill wineglass');
 }
 
+// Random number generator
 function randomNumber(max) {
   return Math.floor(Math.random() * max);
 }
 
-
+// Check for 2 unique sets of 3 unique images,
+// renders the latter set on screen
+// and updates view count
 function renderImage() {
   img1Reference = img[randomNumber(img.length)];
   img2Reference = img[randomNumber(img.length)];
@@ -86,6 +93,9 @@ function renderImage() {
   }
 }
 
+// Processes and saves product objects to local storage,
+// removes event listeners
+// and calls postResults function
 function countRender() {
   if (count < 25) {
     count++;
@@ -100,6 +110,8 @@ function countRender() {
   }
 }
 
+// creates arrays of wiewed, clicked and product names
+// and presents them in a 2D bar graph
 function postResults() {
 
   for (var i = 0; i < img.length; i++) {
@@ -226,6 +238,7 @@ function postResults() {
 
 }
 
+// updates clicks based on image chosen
 function countClicks1() {
   img1Reference.clicked++;
   countRender();
@@ -241,10 +254,11 @@ function countClicks3() {
   countRender();
 }
 
+// renders initial set of images
 countRender();
 
-// renderImage();
-
+// listens to img tags for a click
+// then calls a countclicks function
 img1.addEventListener('click', countClicks1);
 img2.addEventListener('click', countClicks2);
 img3.addEventListener('click', countClicks3);
